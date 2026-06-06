@@ -7,6 +7,7 @@ import { ToastContainer } from "react-toastify";
 import { isAdminAuthenticated } from "@/lib/admin-session";
 import 'react-toastify/dist/ReactToastify.css';
 import "./globals.scss";
+import { Analytics } from "@vercel/analytics/next";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -108,6 +109,7 @@ export default async function RootLayout({
         <Footer />
         <ToastContainer position="bottom-center" autoClose={3500} />
       </body>
+      <Analytics />
     </html>
   );
 }
