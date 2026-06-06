@@ -16,12 +16,13 @@ type CreateOrderInput = {
     }[];
 };
 
-export async function createOrderAction(
-    data: CreateOrderInput
-) {
+export async function createOrderAction(data: CreateOrderInput) {
     return prisma.$transaction(async (tx) => {
         if (data.items.length === 0) {
-            throw new Error("El carrito está vacío.");
+            return {
+                ok: false,
+                message: "El carrito está vacío.",
+            };
         }
 
         let total = 0;
@@ -33,17 +34,20 @@ export async function createOrderAction(
             price: number;
         }[] = [];
 
+        // 🔥 1. VALIDACIÓN + DESCUENTO ATÓMICO
         for (const item of data.items) {
             const product = await tx.product.findUnique({
-                where: {
-                    id: item.productId,
-                },
+                where: { id: item.productId },
             });
 
             if (!product) {
-                throw new Error("Producto no encontrado.");
+                return {
+                    ok: false,
+                    message: "Producto no encontrado.",
+                };
             }
 
+            // 💥 CLAVE: operación atómica (evita overselling)
             const stockUpdated = await tx.stock.updateMany({
                 where: {
                     productId: item.productId,
@@ -60,9 +64,10 @@ export async function createOrderAction(
             });
 
             if (stockUpdated.count === 0) {
-                throw new Error(
-                    `Stock insuficiente para ${product.name}. Intenta con otra talla o producto.`
-                );
+                return {
+                    ok: false,
+                    message: `Stock insuficiente para ${product.name}.`,
+                };
             }
 
             total += product.price * item.quantity;
@@ -75,6 +80,7 @@ export async function createOrderAction(
             });
         }
 
+        // 🔥 2. CREAR ORDER (solo si todo salió bien)
         const order = await tx.order.create({
             data: {
                 customerName: data.customerName,
@@ -82,7 +88,6 @@ export async function createOrderAction(
                 notes: data.notes,
                 total,
                 status: OrderStatus.PENDING,
-
                 items: {
                     create: itemsWithData,
                 },
@@ -97,11 +102,15 @@ export async function createOrderAction(
             },
         });
 
+        // 🔥 3. REVALIDACIÓN
         revalidatePath("/admin/orders");
         revalidatePath("/");
         revalidatePath("/catalogo");
 
-        return order;
+        return {
+            ok: true,
+            order,
+        };
     });
 }
 

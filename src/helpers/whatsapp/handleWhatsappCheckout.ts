@@ -16,41 +16,44 @@ export async function handleWhatsappCheckout({
     items,
     subtotal,
 }: Props) {
-    try {
-        const order = await createOrderAction({
-            customerName,
-            phone,
-            notes,
-            items: items.map((item) => ({
-                productId: item.productId,
-                sizeId: item.sizeId,
-                quantity: item.quantity,
-            })),
-        });
+    const result = await createOrderAction({
+        customerName,
+        phone,
+        notes,
+        items: items.map((item) => ({
+            productId: item.productId,
+            sizeId: item.sizeId,
+            quantity: item.quantity,
+        })),
+    });
 
-        const message = buildWhatsappMessage({
-            orderId: order.id,
-            customerName,
-            phone,
-            notes,
-            items,
-            subtotal,
-        });
-
-        window.open(
-            getWhatsappUrl(
-                process.env.NEXT_PUBLIC_WHATSAPP_PHONE || "",
-                message
-            ),
-            "_blank"
-        );
-
-        return order;
-    } catch (error) {
-        throw new Error(
-            error instanceof Error
-                ? error.message
-                : "No fue posible crear el pedido."
-        );
+    // 🔥 FIX IMPORTANTE
+    if (!result.ok) {
+        return {
+            ok: false,
+            message: result.message,
+        };
     }
+
+    const message = buildWhatsappMessage({
+        orderId: result.order!.id,
+        customerName,
+        phone,
+        notes,
+        items,
+        subtotal,
+    });
+
+    window.open(
+        getWhatsappUrl(
+            process.env.NEXT_PUBLIC_WHATSAPP_PHONE || "",
+            message
+        ),
+        "_blank"
+    );
+
+    return {
+        ok: true,
+        order: result.order,
+    };
 }

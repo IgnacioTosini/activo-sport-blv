@@ -10,7 +10,13 @@ import { FaWhatsapp } from "react-icons/fa";
 import { WhatsappCheckoutModal } from "@/components/checkout/whatsappCheckoutModal/WhatsappCheckoutModal";
 import { CheckoutData } from "@/types/checkout.types";
 import { handleWhatsappCheckout } from "@/helpers/whatsapp/handleWhatsappCheckout";
+import { toast } from "react-toastify";
+import { Order } from "@prisma/client";
 import "./_cartPage.scss";
+
+type CheckoutResult =
+    | { ok: true; order: Order }
+    | { ok: false; message: string };
 
 export default function CartPage() {
     const [open, setOpen] = useState(false);
@@ -19,17 +25,21 @@ export default function CartPage() {
     const clearCart = useCartStore((state) => state.clearCart);
 
     const isEmpty = items.length === 0;
-    const handleDirectPurchase = async (
-        data: CheckoutData
-    ) => {
-        await handleWhatsappCheckout({
+    const handleDirectPurchase = async (data: CheckoutData) => {
+        const res = await handleWhatsappCheckout({
             ...data,
-            subtotal: subtotal,
-            items: items,
-        });
+            subtotal,
+            items,
+        }) as CheckoutResult;
+
+        if (!res.ok) {
+            toast.error(res.message);
+            return;
+        }
 
         setOpen(false);
         clearCart();
+        toast.success("¡Pedido creado! Te redirigimos a WhatsApp para coordinar el pago y envío.");
     };
 
     return (

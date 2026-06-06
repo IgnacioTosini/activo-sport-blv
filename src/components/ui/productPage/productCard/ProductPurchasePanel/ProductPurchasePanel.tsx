@@ -7,6 +7,7 @@ import { ProductSizes } from "../ProductSizes/ProductSizes";
 
 type Props = {
   productId: string;
+  slug: string;
   productName: string;
   productBrand: string;
   productPrice: number;
@@ -16,6 +17,7 @@ type Props = {
 
 export const ProductPurchasePanel = ({
   productId,
+  slug,
   productName,
   productBrand,
   productPrice,
@@ -49,6 +51,7 @@ export const ProductPurchasePanel = ({
       />
       <ProductActions
         productId={productId}
+        slug={slug}
         productName={productName}
         productBrand={productBrand}
         productPrice={productPrice}

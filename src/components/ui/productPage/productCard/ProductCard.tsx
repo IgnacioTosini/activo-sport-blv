@@ -29,6 +29,7 @@ export const ProductCard = ({ product }: Props) => {
                 <ProductSpecs surfaceType={product.surfaceType} />
                 <ProductPurchasePanel
                     productId={product.id}
+                    slug={product.slug}
                     productName={product.name}
                     productBrand={product.brand.name}
                     productPrice={product.price}

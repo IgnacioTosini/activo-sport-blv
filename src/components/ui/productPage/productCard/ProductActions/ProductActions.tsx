@@ -11,6 +11,7 @@ import "./_productActions.scss";
 
 type Props = {
     productId: string;
+    slug: string;
     productName: string;
     productBrand: string;
     productPrice: number;
@@ -22,6 +23,7 @@ type Props = {
 
 export const ProductActions = ({
     productId,
+    slug,
     productName,
     productBrand,
     productPrice,
@@ -41,6 +43,7 @@ export const ProductActions = ({
 
         addItem({
             productId,
+            slug,
             sizeId: selectedSizeId,
             sizeLabel: selectedSizeLabel,
             brand: productBrand,
@@ -60,6 +63,7 @@ export const ProductActions = ({
             items: [
                 {
                     productId,
+                    slug,
                     sizeId: selectedSizeId,
                     sizeLabel: selectedSizeLabel,
                     brand: productBrand,

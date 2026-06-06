@@ -199,6 +199,7 @@
             align-content: flex-start;
             gap: 6px;
             min-height: 38px;
+            overflow: auto;
 
             .catalogCardStockTag {
                 display: inline-flex;

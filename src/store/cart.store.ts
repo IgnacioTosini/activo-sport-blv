@@ -5,6 +5,7 @@ import { createJSONStorage, persist } from "zustand/middleware";
 
 export type CartItem = {
     productId: string;
+    slug: string;
     sizeId: string;
     sizeLabel: string;
     brand: string;
