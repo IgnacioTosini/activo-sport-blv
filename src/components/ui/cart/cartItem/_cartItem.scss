@@ -1,0 +1,169 @@
+@use "@/styles/variables" as *;
+
+.cartItem {
+    background: rgba($secondary-color, 0.88);
+    border: 0.0625rem solid rgba($border-color-secondary, 0.75);
+    border-radius: 1.6rem;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    width: min(100%, 760px);
+    color: $color-text;
+    font-family: $font-family;
+
+    .cartItemImage {
+        width: 7rem;
+        height: 7rem;
+        object-fit: cover;
+        border-radius: 1rem;
+        flex-shrink: 0;
+    }
+
+    .cartItemInfo {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.2rem;
+        flex: 1;
+        min-width: 0;
+
+        .cartItemBrand {
+            font-size: $font-size-xsmall;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: $color-text-secondary;
+            margin: 0;
+        }
+
+        .cartItemName {
+            font-size: clamp(1.55rem, 1.15rem + 0.8vw, 2rem);
+            font-weight: $font-weight-bold;
+            line-height: 1.08;
+            margin: 0;
+            overflow-wrap: anywhere;
+        }
+
+        .cartItemSize {
+            font-size: $font-size-medium;
+            color: $color-text-secondary;
+            line-height: 1.2;
+            margin: 0;
+        }
+
+        .cartItemActions {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            margin-top: 0.45rem;
+
+            .cartQtyControls {
+                display: inline-flex;
+                align-items: center;
+                gap: 0.5rem;
+                border: 0.0625rem solid rgba($border-color-secondary, 0.85);
+                border-radius: 999px;
+                padding: 0.2rem;
+
+                button {
+                    color: $color-text;
+                    width: 2rem;
+                    height: 2rem;
+                    border: none;
+                    background: transparent;
+                    cursor: pointer;
+                    border-radius: 999px;
+
+                    &:hover {
+                        background: rgba($border-color-secondary, 0.25);
+                    }
+                }
+
+                .cartQtyValue {
+                    min-width: 1rem;
+                    text-align: center;
+                    font-size: $font-size-medium-large;
+                    line-height: 1;
+                }
+
+                .cartQtyIncrement {
+                    display: inline-flex;
+                    align-items: center;
+                    justify-content: center;
+                    color: rgba($tertiary-color, 0.9);
+                }
+            }
+
+            .cartRemoveButton {
+                border: 0.0625rem solid rgba($border-color-secondary, 0.65);
+                background: transparent;
+                color: rgba($tertiary-color, 0.7);
+                cursor: pointer;
+                width: 2rem;
+                height: 2rem;
+                border-radius: 999px;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+
+                &:hover {
+                    color: $color-error;
+                }
+            }
+        }
+    }
+
+    .cartItemPrice {
+        margin: 0;
+        font-size: $font-size-medium-large;
+        font-weight: $font-weight-bold;
+        color: $color-text-tertiary;
+        text-wrap: nowrap;
+        line-height: 1;
+        align-self: flex-start;
+        padding-top: 0.25rem;
+    }
+}
+
+@media (max-width: 760px) {
+    .cartItem {
+        align-items: flex-start;
+        padding: 0.85rem;
+
+        .cartItemImage {
+            width: 5.5rem;
+            height: 5.5rem;
+        }
+
+        .cartItemInfo {
+            .cartItemName {
+                font-size: clamp(1.2rem, 0.95rem + 1vw, 1.6rem);
+            }
+        }
+    }
+}
+
+@media (max-width: 620px) {
+    .cartItem {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        grid-template-areas:
+            "image info"
+            "price price";
+
+        .cartItemImage {
+            grid-area: image;
+        }
+
+        .cartItemInfo {
+            grid-area: info;
+        }
+
+        .cartItemPrice {
+            grid-area: price;
+            justify-self: end;
+            margin-top: 0.3rem;
+        }
+    }
+}

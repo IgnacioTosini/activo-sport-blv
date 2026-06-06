@@ -1,0 +1,96 @@
+@use '@/styles/variables' as *;
+
+.premiumBrands {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    padding: 4rem 2rem;
+    min-height: 80dvh;
+
+    @media (max-width: 768px) {
+        padding: 2rem 1rem;
+    }
+
+    .premiumBrandsContainer {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        gap: 3rem;
+
+        .catalogHeader {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            gap: 0.75rem;
+            width: 100%;
+
+            .catalogLink {
+                color: $color-text;
+                font-size: $font-size-normal;
+                font-family: $font-family;
+                font-weight: $font-weight-medium;
+                text-transform: uppercase;
+                letter-spacing: 0.08em;
+                text-decoration: none;
+
+                &:hover {
+                    color: $color-text-tertiary;
+                }
+            }
+
+            @media (max-width: 768px) {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        .premiumBrandsList {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 1.5rem;
+            width: 100%;
+
+            @media (max-width: 768px) {
+                justify-content: center;
+            }
+
+            .premiumBrandItem {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 5rem;
+                width: clamp(150px, 13dvw, 250px);
+                height: clamp(150px, 13dvw, 250px);
+                background: rgba($secondary-color, 0.88);
+                border: 0.0625rem solid rgba($border-color-secondary, 0.75);
+                border-radius: 1.6rem;
+                cursor: pointer;
+                text-decoration: none;
+                transition: all 0.2s ease-in-out;
+
+                &:hover {
+                    background: rgba($secondary-color, 1);
+                    transform: translateY(-5px);
+                    box-shadow: inset 0px 0px 30px 10px rgba($border-color, 0.5);
+                    color: $color-text-tertiary;
+                }
+
+                .premiumBrandName {
+                    font-size: clamp($font-size-medium-large, 2vw, $font-size-xlarge);
+                    font-weight: $font-weight-medium;
+                    color: $color-text-secondary;
+                    font-family: $font-family;
+                    text-align: center;
+                    letter-spacing: 0.02em;
+                    text-transform: uppercase;
+                    margin: 0;
+                }
+            }
+        }
+    }
+}

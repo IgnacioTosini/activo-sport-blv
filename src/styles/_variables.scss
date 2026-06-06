@@ -1,0 +1,56 @@
+$primary-color: #050505;
+$secondary-color: #111111;
+$tertiary-color: #FFFFFF;
+$quaternary-color: #D9FF00;
+
+$color-button: #D9FF00;
+$color-button-secondary: #A30404;
+$border-color: #D9FF00;
+$border-color-secondary: #5f5f5f44;
+
+//Color text
+$color-text: #FFFFFF;
+$color-text-secondary: #8b8383;
+$color-text-tertiary: #D9FF00;
+$color-text-quaternary: #070707;
+
+$color-hover-primary: #D9FF00;
+$color-hover-secondary: #FFFFFF;
+$color-title-accent: #A30404;
+
+$font-family: var(--font-inter), "Inter", system-ui, sans-serif;
+$font-family-display: var(--font-bebas-neue), "Bebas Neue", "Oswald", "Arial Narrow", var(--font-inter), system-ui, sans-serif;
+$font-family-secondary: $font-family-display;
+
+$font-size-xsmall: 10px;
+$font-size-small: 12px;
+$font-size-normal: 14px;
+$font-size-medium: 16px;
+$font-size-medium-large: 20px;
+$font-size-large: 24px;
+$font-size-xlarge: 30px;
+$font-size-xxlarge: 48px;
+$font-size-xxxlarge: 72px;
+$font-size-xxxxlarge: 160px;
+
+$font-weight-regular: 400;
+$font-weight-medium: 500;
+$font-weight-bold: 700;
+$font-weight-extra-bold: 800;
+
+$color-error: #ff4d4f;
+$color-success: #52c41a;
+
+$color-admin-sidebar-bg: #23272f;
+$color-admin-sidebar-accent: #ffb347;
+$color-admin-main-bg: #f7f7fa;
+
+$color-status-confirmed: #1f59b6;
+$color-status-confirmed-bg: #3e82f7;
+$color-status-preparing: #a05e00;
+$color-status-preparing-bg: #ff9800;
+$color-status-ready: #006e61;
+$color-status-ready-bg: #00a38e;
+
+$color-instagram: #B453E6;
+$color-whatsapp: #25D366;

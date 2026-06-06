@@ -1,0 +1,35 @@
+@use '@/styles/variables' as *;
+
+.glossaryOfSoccerShoes {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    padding: 4rem 2rem;
+
+    @media (max-width: 768px) {
+        padding: 2rem 1rem;
+    }
+
+    .glossaryOfSoccerShoesContainer {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        gap: 1rem;
+        max-width: 1200px;
+
+        .glossaryOfSoccerShoesItems {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: flex-start;
+
+            @media (max-width: 768px) {
+                gap: 1rem;
+                justify-content: center;
+            }
+        }
+    }
+}

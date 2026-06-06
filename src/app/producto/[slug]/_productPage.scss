@@ -1,0 +1,44 @@
+@use '@/styles/variables' as *;
+
+.productPage {
+    min-height: 100dvh;
+    padding: 6rem 0 3.25rem;
+    color: $color-text;
+    background:
+        radial-gradient(circle at 20% 18%, rgba($quaternary-color, 0.12), transparent 30%),
+        radial-gradient(circle at 76% 28%, rgba($tertiary-color, 0.08), transparent 26%),
+        $primary-color;
+
+    .productPageContainer {
+        margin: 0 auto;
+        display: grid;
+        gap: 1.125rem;
+    }
+
+    .productPageBack {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: rgba($tertiary-color, 0.5);
+        text-decoration: none;
+        font-size: $font-size-small;
+        letter-spacing: 0.11em;
+        text-transform: uppercase;
+        font-weight: $font-weight-bold;
+
+        &:hover {
+            color: $tertiary-color;
+            text-decoration: underline;
+        }
+    }
+}
+
+@media (max-width: 61.25rem) {
+    .productPage {
+        padding-top: 5.125rem;
+
+        .productPageContainer {
+            width: min(1400px, 80%);
+        }
+    }
+}

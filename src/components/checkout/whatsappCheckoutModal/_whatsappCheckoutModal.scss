@@ -1,0 +1,172 @@
+@use "@/styles/variables" as *;
+
+.checkoutModalOverlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    background: rgba(#000, 0.75);
+    backdrop-filter: blur(8px);
+
+    .checkoutModal {
+        width: 100%;
+        max-width: 520px;
+
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+
+        padding: 24px;
+
+        border-radius: 20px;
+        border: 1px solid rgba($quaternary-color, 0.3);
+
+        background: linear-gradient(180deg,
+                rgba($secondary-color, 0.98) 0%,
+                rgba($primary-color, 0.98) 100%);
+
+        box-shadow:
+            0 20px 60px rgba(#000, 0.5),
+            0 0 0 1px rgba($quaternary-color, 0.08);
+
+        h3 {
+            margin: 0;
+
+            color: $color-text;
+            font-family: $font-family-secondary;
+            font-size: $font-size-xlarge;
+            font-weight: $font-weight-regular;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        .checkoutModalDescription {
+            margin: 0;
+
+            color: $color-text-secondary;
+            font-size: $font-size-normal;
+            line-height: 1.6;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+
+            border: 1px solid $border-color-secondary;
+            border-radius: 12px;
+
+            background: rgba($tertiary-color, 0.03);
+
+            padding: 14px 16px;
+
+            color: $color-text;
+            font-family: $font-family;
+            font-size: $font-size-medium;
+
+            transition:
+                border-color 0.2s ease,
+                box-shadow 0.2s ease;
+
+            &::placeholder {
+                color: $color-text-secondary;
+            }
+
+            &:focus {
+                outline: none;
+
+                border-color: $border-color;
+
+                box-shadow: 0 0 0 3px rgba($quaternary-color, 0.15);
+            }
+        }
+
+        textarea {
+            min-height: 110px;
+            resize: vertical;
+        }
+
+        small {
+            margin-top: -6px;
+
+            color: $color-text-secondary;
+            font-size: $font-size-small;
+            line-height: 1.4;
+        }
+
+        .checkoutModalError {
+            margin: 0;
+
+            color: $color-error;
+            font-size: $font-size-normal;
+            font-weight: $font-weight-medium;
+        }
+
+        .checkoutModalActions {
+            display: flex;
+            gap: 12px;
+
+            margin-top: 8px;
+
+            button {
+                flex: 1;
+                cursor: pointer;
+                height: 48px;
+                border-radius: 999px;
+                padding: .5rem;
+                font-size: $font-size-normal;
+                font-weight: $font-weight-bold;
+                transition:
+                    transform 0.15s ease,
+                    opacity 0.15s ease,
+                    background 0.15s ease;
+
+                &:disabled {
+                    cursor: not-allowed;
+                    opacity: 0.6;
+                }
+
+                &:hover:not(:disabled) {
+                    transform: translateY(-2px);
+                }
+
+                &:first-child {
+                    border: 1px solid $border-color-secondary;
+
+                    background: transparent;
+                    color: $color-text;
+                }
+
+                &:last-child {
+                    border: 1px solid $border-color;
+
+                    background: $color-button;
+                    color: $color-text-quaternary;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 640px) {
+    .checkoutModalOverlay {
+        padding: 16px;
+
+        .checkoutModal {
+            padding: 20px;
+
+            h3 {
+                font-size: $font-size-large;
+            }
+
+            .checkoutModalActions {
+                flex-direction: column;
+            }
+        }
+    }
+}

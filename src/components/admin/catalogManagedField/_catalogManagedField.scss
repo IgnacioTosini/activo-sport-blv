@@ -1,0 +1,96 @@
+@use '@/styles/variables' as *;
+
+.catalogManagedFieldLabel {
+  display: grid;
+  gap: 6px;
+  font-size: $font-size-small;
+  color: #c8cdd7;
+}
+
+.catalogManagedFieldHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.catalogManagedFieldManageButton {
+  appearance: none;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  color: rgba($quaternary-color, 0.88);
+  font-size: 12px;
+  font-weight: $font-weight-medium;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  padding: 0;
+
+  &:hover {
+    color: $quaternary-color;
+  }
+}
+
+.catalogModalOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  background: rgba(3, 4, 8, 0.7);
+}
+
+.catalogModalCard {
+  width: min(760px, 100%);
+  max-height: min(82vh, 760px);
+  overflow: auto;
+  border-radius: 16px;
+  border: 1px solid rgba($quaternary-color, 0.3);
+  background: linear-gradient(180deg, rgba(#0c0e12, 0.97) 0%, rgba(#090b0d, 0.97) 100%);
+  padding: 16px;
+  display: grid;
+  gap: 12px;
+}
+
+.catalogModalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.catalogModalCreateRow {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 8px;
+}
+
+.catalogModalList {
+  display: grid;
+  gap: 8px;
+}
+
+.catalogModalItem {
+  border: 1px solid rgba($tertiary-color, 0.2);
+  border-radius: 10px;
+  background: rgba(#07080a, 0.5);
+  padding: 8px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+  align-items: center;
+}
+
+.catalogModalActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+@media (max-width: 720px) {
+  .catalogModalCreateRow,
+  .catalogModalItem {
+    grid-template-columns: 1fr;
+  }
+}

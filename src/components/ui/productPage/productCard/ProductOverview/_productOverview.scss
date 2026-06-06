@@ -1,0 +1,70 @@
+@use '@/styles/variables' as *;
+
+.productOverview {
+    display: grid;
+    gap: 0.75rem;
+
+    .productOverviewBrand {
+        margin: 0;
+        color: $quaternary-color;
+        font-size: $font-size-small;
+        font-family: $font-family;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        font-weight: $font-weight-bold;
+    }
+
+    .productOverviewName {
+        margin: 0;
+        font-family: $font-family;
+        font-size: clamp($font-size-large, 6vw, $font-size-xxxlarge);
+        font-weight: $font-weight-regular;
+        line-height: 0.95;
+        letter-spacing: 0.02em;
+    }
+
+    .productOverviewPriceRow {
+        display: flex;
+        align-items: baseline;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+
+        .productOverviewPrice {
+            margin: 0;
+            color: $quaternary-color;
+            font-size: clamp($font-size-large, 3vw, $font-size-xlarge);
+            font-family: $font-family;
+            line-height: 0.95;
+        }
+
+        .productOverviewInstallments {
+            color: rgba($tertiary-color, 0.55);
+            font-size: $font-size-small;
+            font-weight: $font-weight-bold;
+            letter-spacing: 0.1em;
+            font-family: $font-family;
+            text-transform: uppercase;
+        }
+    }
+
+    .productOverviewDescription {
+        margin: 0;
+        color: rgba($tertiary-color, 0.82);
+        font-size: $font-size-medium;
+        max-width: 54ch;
+        line-height: 1.45;
+        font-family: $font-family;
+    }
+}
+
+@media (max-width: 47.5rem) {
+    .productOverview {
+        .productOverviewName {
+            font-size: clamp(2.125rem, 12vw, 2.875rem);
+        }
+
+        .productOverviewPrice {
+            font-size: clamp(1.75rem, 9vw, 2.375rem);
+        }
+    }
+}

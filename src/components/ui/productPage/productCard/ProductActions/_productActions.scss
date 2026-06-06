@@ -1,0 +1,76 @@
+@use '@/styles/variables' as *;
+
+.productActions {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    flex-wrap: wrap;
+
+    .productActionButton {
+        min-height: 3.25rem;
+        border-radius: 999rem;
+        border: 0.0625rem solid transparent;
+        padding: 0 1.5rem;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.625rem;
+        text-decoration: none;
+        cursor: pointer;
+        font-size: $font-size-normal;
+        font-weight: $font-weight-bold;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        transition: all 0.2s ease-in-out;
+
+        &:hover {
+            filter: brightness(1.08);
+            transform: translateY(-0.125rem);
+        }
+
+        &:disabled {
+            opacity: 0.45;
+            cursor: not-allowed;
+            transform: none;
+            filter: none;
+        }
+
+        &.isPrimary {
+            background: $quaternary-color;
+            color: $color-text-quaternary;
+            box-shadow: 0 0 0 0.0625rem rgba($quaternary-color, 0.6), 0 0 1.5rem rgba($quaternary-color, 0.28);
+        }
+
+        &.isWhatsapp {
+            background: $color-whatsapp;
+            color: #04120a;
+        }
+    }
+
+    .productActionIcon {
+        width: 3.25rem;
+        height: 3.25rem;
+        border-radius: 999rem;
+        border: 0.0625rem solid rgba($tertiary-color, 0.2);
+        background: transparent;
+        color: $tertiary-color;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.375rem;
+        cursor: pointer;
+
+        &:hover {
+            border-color: rgba($quaternary-color, 0.7);
+            color: $quaternary-color;
+        }
+    }
+}
+
+@media (max-width: 47.5rem) {
+    .productActions {
+        .productActionButton {
+            width: 100%;
+        }
+    }
+}

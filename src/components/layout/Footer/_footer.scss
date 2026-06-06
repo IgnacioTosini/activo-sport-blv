@@ -1,0 +1,158 @@
+@use '@/styles/variables' as *;
+
+.footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: $secondary-color;
+    color: $color-text-secondary;
+    width: 100%;
+    text-align: center;
+    padding: 2rem 1rem;
+    border-top: 1px solid $border-color;
+    z-index: 10000;
+
+    .footerContent {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        width: 100%;
+        max-width: 1200px;
+        border-bottom: 1px solid $border-color;
+        padding-bottom: 1rem;
+
+        @media (max-width: 768px) {
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .footerContentHeader {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.5rem;
+            max-width: 450px;
+            text-align: left;
+
+            @media (max-width: 768px) {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            h1 {
+                margin: 0;
+                font-size: $font-size-xlarge;
+                font-weight: $font-weight-regular;
+                font-family: $font-family-secondary;
+                letter-spacing: 0.1em;
+                text-transform: uppercase;
+                line-height: 36px;
+
+                span {
+                    color: $color-text-tertiary;
+                }
+            }
+
+            .footerContentHeaderDescription {
+                font-family: $font-family;
+                font-size: $font-size-normal;
+                color: $color-text-secondary;
+                margin-top: 0.5rem;
+            }
+
+            .footerContentHeaderSocialMedia {
+                display: flex;
+                gap: 1rem;
+                margin-top: 0.5rem;
+
+                a {
+                    color: $color-text-secondary;
+                    transition: color 0.3s ease;
+
+                    &:hover {
+                        color: $color-hover-primary;
+                    }
+                }
+            }
+        }
+
+        .footerContentNavigation {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.5rem;
+
+            h2 {
+                font-family: $font-family-secondary;
+                font-size: $font-size-medium-large;
+                color: $color-text-secondary;
+                margin-bottom: 0.5rem;
+                font-weight: $font-weight-medium;
+                letter-spacing: 0.02em;
+            }
+
+            li {
+                list-style: none;
+
+                a {
+                    color: $color-text-secondary;
+                    text-decoration: none;
+                    font-family: $font-family;
+                    font-size: $font-size-normal;
+                    transition: color 0.3s ease;
+
+                    &:hover {
+                        color: $color-hover-primary;
+                    }
+                }
+            }
+        }
+    }
+
+    .footerContentFooter {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 1rem;
+        margin-top: 1rem;
+        width: 100%;
+        max-width: 1200px;
+
+        .footerContentInfo {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            width: 100%;
+
+            @media (max-width: 768px) {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            h4 {
+                margin: 0;
+                font-family: $font-family;
+                font-size: $font-size-small;
+                color: $color-text-secondary;
+            }
+
+            .footerContentPayment {
+                font-family: $font-family;
+                font-size: $font-size-normal;
+                color: $color-text-secondary;
+                text-transform: uppercase;
+            }
+        }
+
+        p {
+            font-family: $font-family;
+            font-size: $font-size-xsmall;
+            color: $color-text-secondary;
+        }
+    }
+}

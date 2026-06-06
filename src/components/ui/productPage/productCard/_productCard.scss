@@ -1,0 +1,28 @@
+@use '@/styles/variables' as *;
+
+.productCard {
+	width: 100%;
+	display: grid;
+	grid-template-columns: minmax(20rem, 1fr) minmax(20rem, 1fr);
+	gap: 2.125rem;
+	align-items: start;
+    font-family: $font-family;
+
+	.productCardInfo {
+		display: grid;
+		gap: 1.125rem;
+	}
+}
+
+@media (max-width: 75rem) {
+	.productCard {
+		grid-template-columns: 1fr;
+		gap: 1.375rem;
+	}
+}
+
+@media (max-width: 47.5rem) {
+	.productCard {
+		gap: 0.875rem;
+	}
+}

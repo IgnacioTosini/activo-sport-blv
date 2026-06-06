@@ -1,0 +1,263 @@
+@use '@/styles/variables' as *;
+
+@keyframes sizeModalOverlayIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes sizeModalOverlayOut {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes sizeModalContentIn {
+    from {
+        opacity: 0;
+        transform: translateY(0.6rem) scale(0.985);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes sizeModalContentOut {
+    from {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+
+    to {
+        opacity: 0;
+        transform: translateY(0.45rem) scale(0.99);
+    }
+}
+
+.sizeModal {
+    position: fixed;
+    inset: 0;
+    z-index: 1200;
+    display: grid;
+    place-items: center;
+    padding: 1rem;
+    background: rgba($primary-color, 0.75);
+    backdrop-filter: blur(3px);
+
+    &.isOpen {
+        animation: sizeModalOverlayIn 220ms ease forwards;
+    }
+
+    &.isClosing {
+        animation: sizeModalOverlayOut 220ms ease forwards;
+    }
+
+    .sizeModalContent {
+        position: relative;
+        width: 100%;
+        max-width: 40rem;
+        max-height: min(92vh, 48rem);
+        overflow-y: auto;
+        border: 0.0625rem solid rgba($quaternary-color, 0.28);
+        border-radius: 1rem;
+        background: linear-gradient(150deg, rgba($secondary-color, 0.98) 0%, rgba($primary-color, 0.98) 100%);
+        color: $color-text;
+        box-shadow: 0 1.25rem 2.5rem rgba($primary-color, 0.45);
+        padding: 1.4rem 1.1rem 1rem;
+        transform-origin: center;
+
+        &.isOpen {
+            animation: sizeModalContentIn 220ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+
+        &.isClosing {
+            animation: sizeModalContentOut 220ms ease forwards;
+        }
+    }
+
+    .sizeModalCloseButton {
+        position: sticky;
+        top: 0;
+        float: right;
+        border: 0;
+        border-radius: 999px;
+        padding: 0.45rem 0.8rem;
+        background: rgba($tertiary-color, 0.1);
+        color: $color-text;
+        font-size: $font-size-small;
+        font-weight: $font-weight-bold;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+
+        &:hover {
+            background: rgba($quaternary-color, 0.9);
+            color: $color-text-quaternary;
+        }
+    }
+
+    .sizeModalContentHeader {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        gap: 0.35rem;
+        margin-top: 0.35rem;
+        margin-bottom: 1rem;
+
+        span {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            color: $quaternary-color;
+            font-size: $font-size-small;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            font-weight: $font-weight-bold;
+        }
+
+        h1 {
+            margin: 0;
+            font-family: $font-family-display;
+            font-size: clamp(1.8rem, 4.8vw, 2.8rem);
+            letter-spacing: 0.03em;
+            line-height: 1;
+        }
+    }
+
+    .sizeModalContentBody {
+        display: grid;
+        gap: 0.85rem;
+
+        p {
+            margin: 0;
+            color: rgba($tertiary-color, 0.9);
+            font-size: $font-size-normal;
+            line-height: 1.55;
+        }
+
+        ul {
+            margin: 0;
+            padding-left: 1.1rem;
+            display: grid;
+            gap: 0.65rem;
+            list-style: none;
+            counter-reset: step-counter;
+
+            li {
+                position: relative;
+                padding-left: 1.5rem;
+
+                &::before {
+                    content: counter(step-counter);
+                    counter-increment: step-counter;
+                    position: absolute;
+                    left: 0;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    width: 1.1rem;
+                    height: 1.1rem;
+                    border-radius: 999px;
+                    background: rgba($quaternary-color, 0.9);
+                    color: $color-text-quaternary;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: $font-size-xsmall;
+                    font-weight: $font-weight-bold;
+                }
+            }
+        }
+
+        .sizeModalInfo {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            color: rgba($quaternary-color, 0.9);
+            font-size: $font-size-normal;
+            font-weight: $font-weight-medium;
+        }
+    }
+
+    .sizeModalTable {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 1.2rem;
+        border: 0.0625rem solid rgba($tertiary-color, 0.18);
+        border-radius: 0.75rem;
+        overflow: hidden;
+
+        thead {
+            background: rgba($quaternary-color, 0.9);
+        }
+
+        tr {
+            &:hover {
+                background: rgba($quaternary-color, 0.1);
+            }
+        }
+
+        th,
+        td {
+            text-align: center;
+            padding: 0.62rem 0.35rem;
+            font-size: $font-size-normal;
+        }
+
+        th {
+            color: $color-text-quaternary;
+            font-weight: $font-weight-bold;
+            letter-spacing: 0.05em;
+        }
+
+        td {
+            color: rgba($tertiary-color, 0.95);
+            border-top: 0.0625rem solid rgba($tertiary-color, 0.14);
+        }
+
+        tbody tr:nth-child(even) td {
+            background: rgba($tertiary-color, 0.03);
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .sizeModal {
+        padding: 0.6rem;
+    }
+
+    .sizeModalContent {
+        max-height: 94vh;
+        border-radius: 0.85rem;
+        padding: 1rem 0.8rem 0.9rem;
+    }
+
+    .sizeModalContentBody {
+
+        p,
+        li {
+            font-size: $font-size-small;
+        }
+    }
+
+    .sizeModalTable {
+
+        th,
+        td {
+            font-size: $font-size-small;
+            padding: 0.5rem 0.25rem;
+        }
+    }
+}

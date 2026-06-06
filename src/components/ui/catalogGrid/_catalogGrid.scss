@@ -1,0 +1,19 @@
+@use '@/styles/variables' as *;
+
+.catalogGrid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.875rem;
+    width: 100%;
+
+    @media (max-width: 760px) {
+        flex-direction: column;
+    }
+
+    .catalogEmpty {
+        color: $color-text-secondary;
+        font-size: clamp($font-size-medium, 2vw, $font-size-large);
+        font-family: $font-family;
+        margin-top: 2rem;
+    }
+}

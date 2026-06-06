@@ -1,0 +1,232 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  ADMIN
+  USER
+}
+
+enum SurfaceType {
+  FG
+  TF
+  AG
+  SG
+  IC
+}
+
+enum OrderStatus {
+  PENDING
+  CONFIRMED
+  SHIPPED
+  DELIVERED
+  CANCELLED
+}
+
+model User {
+  id       String  @id @default(cuid())
+  name     String?
+  email    String  @unique
+  password String
+  role     Role    @default(USER)
+
+  wishlist Wishlist[]
+  cart     Cart?
+  orders   Order[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  reviews   Review[]
+}
+
+model Brand {
+  id       String    @id @default(cuid())
+  name     String    @unique
+  logoUrl  String?
+  products Product[]
+
+  createdAt DateTime @default(now())
+}
+
+model Category {
+  id       String    @id @default(cuid())
+  name     String    @unique
+  products Product[]
+
+  createdAt DateTime @default(now())
+}
+
+model Product {
+  id          String  @id @default(cuid())
+  name        String
+  slug        String  @unique
+  description String
+  price       Float
+  featured    Boolean @default(false)
+  isNew       Boolean @default(true)
+
+  brandId String
+  brand   Brand  @relation(fields: [brandId], references: [id])
+
+  categoryId String
+  category   Category @relation(fields: [categoryId], references: [id])
+
+  surfaceType SurfaceType
+
+  mainImage String
+  images    ProductImage[]
+
+  stock Stock[]
+
+  isActive Boolean @default(true)
+
+  reviews Review[]
+
+  createdAt  DateTime    @default(now())
+  updatedAt  DateTime    @updatedAt
+  wishlists  Wishlist[]
+  cartItems  CartItem[]
+  orderItems OrderItem[]
+}
+
+model ProductImage {
+  id  String @id @default(cuid())
+  url String
+
+  productId String
+  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+}
+
+model Size {
+  id String @id @default(cuid())
+
+  usSize  Float
+  eurSize Float
+  cmSize  Float
+
+  stock Stock[]
+
+  createdAt  DateTime    @default(now())
+  cartItems  CartItem[]
+  orderItems OrderItem[]
+
+  @@unique([usSize, eurSize, cmSize])
+}
+
+model Stock {
+  id String @id @default(cuid())
+
+  quantity Int
+
+  productId String
+  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  sizeId String
+  size   Size   @relation(fields: [sizeId], references: [id])
+
+  createdAt DateTime @default(now())
+
+  @@unique([productId, sizeId])
+}
+
+model Wishlist {
+  id String @id @default(cuid())
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  productId String
+  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+
+  @@unique([userId, productId])
+}
+
+model Cart {
+  id String @id @default(cuid())
+
+  userId String? @unique
+  user   User?   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  items CartItem[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model CartItem {
+  id String @id @default(cuid())
+
+  quantity Int @default(1)
+
+  cartId String
+  cart   Cart   @relation(fields: [cartId], references: [id], onDelete: Cascade)
+
+  productId String
+  product   Product @relation(fields: [productId], references: [id])
+
+  sizeId String
+  size   Size   @relation(fields: [sizeId], references: [id])
+  brand  String
+
+  createdAt DateTime @default(now())
+}
+
+model Order {
+  id String @id @default(cuid())
+
+  total Float
+
+  customerName String
+  phone String
+
+  notes String?
+
+  status OrderStatus @default(PENDING)
+
+  userId String?
+  user User? @relation(fields: [userId], references: [id])
+
+  items OrderItem[]
+
+  createdAt DateTime @default(now())
+}
+
+model OrderItem {
+  id String @id @default(cuid())
+
+  quantity Int
+  price    Float
+
+  orderId String
+  order   Order  @relation(fields: [orderId], references: [id], onDelete: Cascade)
+
+  productId String
+  product   Product @relation(fields: [productId], references: [id])
+
+  sizeId String
+  size   Size   @relation(fields: [sizeId], references: [id])
+}
+
+model Review {
+  id String @id @default(cuid())
+
+  rating  Int
+  comment String?
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id])
+
+  productId String
+  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+}

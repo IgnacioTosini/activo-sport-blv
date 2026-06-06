@@ -1,0 +1,258 @@
+@use '@/styles/variables' as *;
+
+.hero {
+    position: relative;
+    min-height: 100dvh;
+    margin-top: -88px;
+    padding: 120px 0 48px;
+    overflow: hidden;
+    color: $color-text;
+    background:
+        radial-gradient(circle at 78% 58%, transparent 20%),
+        linear-gradient(90deg, rgba(#000, 0.96) 0%, rgba(#000, 0.78) 45%, rgba(#000, 0.44) 100%),
+        var(--hero-image) center right / cover no-repeat;
+
+    &::after {
+        content: '';
+        position: absolute;
+        inset: auto 0 0;
+        height: 28%;
+        background: linear-gradient(180deg, rgba(#000, 0) 0%, rgba(#000, 0.92) 100%);
+        pointer-events: none;
+    }
+
+    .heroInner {
+        position: relative;
+        z-index: 1;
+        display: grid;
+        grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
+        align-items: center;
+        gap: 24px;
+        min-height: calc(100dvh - 120px);
+        margin: 0 auto;
+    }
+
+    .heroContent {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        max-width: 760px;
+    }
+
+    .heroLabel {
+        display: inline-flex;
+        align-items: center;
+        gap: 14px;
+        margin-bottom: 16px;
+        font-family: $font-family;
+        font-size: clamp(11px, 1vw, 13px);
+        font-weight: $font-weight-bold;
+        letter-spacing: 0.34em;
+        text-transform: uppercase;
+        color: $color-text-tertiary;
+
+        .heroLabelLine {
+            width: 36px;
+            height: 2px;
+            background-color: $color-text-tertiary;
+            box-shadow: 0 0 18px rgba($color-text-tertiary, 0.9);
+        }
+    }
+
+    .heroTitle {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        margin: 0;
+        font-family: $font-family-secondary;
+        font-size: clamp(74px, 10vw, 160px);
+        font-weight: $font-weight-regular;
+        line-height: 0.88;
+        letter-spacing: -0.03em;
+        text-transform: uppercase;
+
+        b {
+            color: $color-text-tertiary;
+            font-weight: $font-weight-regular;
+            text-shadow: 0 0 26px rgba($color-text-tertiary, 0.72);
+        }
+    }
+
+    .heroDescription {
+        max-width: 460px;
+        margin: 20px 0 0;
+        font-family: $font-family;
+        font-size: clamp(16px, 1.4vw, 21px);
+        line-height: 1.5;
+        color: rgba($color-text, 0.74);
+    }
+
+    .heroButtons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+        margin-top: 28px;
+
+        .primaryButton,
+        .secondaryButton {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 56px;
+            padding: 0 28px;
+            border-radius: 999px;
+            border: 1px solid rgba($color-text, 0.12);
+            font-family: $font-family;
+            font-size: 15px;
+            font-weight: $font-weight-bold;
+            letter-spacing: 0.12em;
+            text-decoration: none;
+            text-transform: uppercase;
+            transition: transform 0.25s ease, background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+
+            &:hover {
+                transform: translateY(-2px);
+            }
+        }
+
+        .primaryButton {
+            background-color: $color-text-tertiary;
+            border-color: $color-text-tertiary;
+            color: $color-text-quaternary;
+            box-shadow: 0 0 22px rgba($color-text-tertiary, 0.38);
+
+            &:hover {
+                background-color: #efff70;
+                border-color: #efff70;
+            }
+        }
+
+        .secondaryButton {
+            background-color: rgba(#0f0f0f, 0.45);
+            color: $color-text;
+            backdrop-filter: blur(12px);
+
+            &:hover {
+                border-color: rgba($color-text-tertiary, 0.6);
+                color: $color-text-tertiary;
+            }
+        }
+    }
+
+    .heroPagination {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        margin-top: 34px;
+
+        .heroPaginationBars {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .heroPaginationBar {
+            width: 28px;
+            height: 3px;
+            padding: 0;
+            border: 0;
+            background-color: rgba($color-text, 0.25);
+            cursor: pointer;
+            transition: width 0.25s ease, background-color 0.25s ease, box-shadow 0.25s ease;
+
+            &.isActive {
+                width: 38px;
+                background-color: $color-text-tertiary;
+                box-shadow: 0 0 16px rgba($color-text-tertiary, 0.72);
+            }
+        }
+
+        .heroPaginationCounter {
+            font-family: $font-family;
+            font-size: 13px;
+            font-weight: $font-weight-medium;
+            letter-spacing: 0.18em;
+            color: rgba($color-text, 0.68);
+        }
+    }
+
+    .heroMedia {
+        position: relative;
+        min-height: 100%;
+    }
+
+    .heroMediaGlow {
+        position: absolute;
+        inset: auto 8% 8% -6%;
+        height: 12px;
+        border-radius: 999px;
+        background: linear-gradient(90deg, rgba(#00a3ff, 0.1) 0%, rgba(#0b77ff, 0.95) 44%, rgba(#86d5ff, 0.5) 100%);
+        filter: blur(6px);
+        opacity: 0.95;
+    }
+
+    .heroMediaImage {
+        min-height: 680px;
+        background: var(--hero-image) center center / contain no-repeat;
+        filter: drop-shadow(0 34px 60px rgba(#000, 0.78));
+        transform: scale(1.08) translateX(4%);
+    }
+
+    @media (max-width: 1080px) {
+        margin-top: 0;
+        padding-top: 56px;
+
+        .heroInner {
+            grid-template-columns: 1fr;
+            width: min(100% - 32px, 860px);
+            min-height: auto;
+            gap: 4px;
+        }
+
+        .heroContent {
+            max-width: 100%;
+        }
+
+        .heroMedia {
+            order: -1;
+        }
+
+        .heroMediaImage {
+            min-height: 420px;
+            transform: none;
+            background-position: center top;
+        }
+    }
+
+    @media (max-width: 720px) {
+        min-height: auto;
+        padding: 32px 0 36px;
+
+        .heroLabel {
+            letter-spacing: 0.2em;
+        }
+
+        .heroDescription {
+            max-width: 100%;
+            font-size: 16px;
+        }
+
+        .heroButtons {
+            width: 100%;
+
+            .primaryButton,
+            .secondaryButton {
+                width: 100%;
+            }
+        }
+
+        .heroPagination {
+            gap: 14px;
+        }
+
+        .heroMediaImage {
+            min-height: 300px;
+            background-size: cover;
+        }
+    }
+}

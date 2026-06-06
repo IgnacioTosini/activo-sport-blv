@@ -1,0 +1,219 @@
+@use '@/styles/variables' as *;
+
+.catalogFiltersSection {
+    min-height: 100dvh;
+    padding: 112px 0 56px;
+    color: $color-text;
+    background:
+        radial-gradient(circle at 18% 16%, rgba($quaternary-color, 0.16), transparent 34%),
+        radial-gradient(circle at 85% 30%, rgba($tertiary-color, 0.06), transparent 28%),
+        $primary-color;
+
+    .catalogFiltersContainer {
+        width: min(1320px, calc(100% - 64px));
+        margin: 0 auto;
+        display: grid;
+        gap: 18px;
+    }
+
+    .catalogFiltersHeader {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 16px;
+    }
+
+    .catalogFiltersCount {
+        margin: 8px 0 0;
+        color: $color-text-secondary;
+        font-family: $font-family;
+        font-size: $font-size-large;
+    }
+
+    .catalogFiltersSearch {
+        min-width: 320px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 0 16px;
+        height: 44px;
+        border-radius: 999px;
+        border: 1px solid rgba($tertiary-color, 0.12);
+        background: rgba($secondary-color, 0.72);
+
+        .catalogFiltersSearchIcon {
+            color: rgba($tertiary-color, 0.62);
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        input {
+            width: 100%;
+            border: 0;
+            outline: none;
+            background: transparent;
+            color: $color-text;
+            font-family: $font-family;
+            font-size: $font-size-medium;
+
+            &::placeholder {
+                color: rgba($tertiary-color, 0.38);
+            }
+        }
+    }
+
+    .catalogFiltersToolbar {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 16px;
+        align-items: center;
+    }
+
+    .catalogFiltersGroup {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        min-width: 0;
+    }
+
+    .catalogFiltersLabel {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-size: $font-size-medium;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: $color-text-secondary;
+        white-space: nowrap;
+    }
+
+    .catalogFiltersPills {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+    }
+
+    .catalogFiltersPill {
+        border: 1px solid rgba($tertiary-color, 0.16);
+        border-radius: 999px;
+        min-height: 34px;
+        padding: 0 15px;
+        background: transparent;
+        color: $color-text;
+        font-family: $font-family;
+        font-size: $font-size-medium;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: all 0.2s ease;
+
+        &:hover {
+            border-color: rgba($quaternary-color, 0.54);
+            color: $quaternary-color;
+        }
+
+        &.isActive {
+            background: $quaternary-color;
+            border-color: $quaternary-color;
+            color: $color-text-quaternary;
+        }
+    }
+
+    .catalogFiltersRangeRow {
+        display: grid;
+        grid-template-columns: auto minmax(220px, 360px);
+        align-items: center;
+        gap: 18px;
+    }
+
+    .catalogFiltersRangeLabel {
+        font-size: $font-size-medium-large;
+        letter-spacing: 0.12em;
+        color: $color-text-secondary;
+        text-transform: uppercase;
+    }
+
+    input[type='range'] {
+        width: 100%;
+        appearance: none;
+        height: 10px;
+        border-radius: 999px;
+        background: linear-gradient(90deg, rgba($quaternary-color, 0.86), rgba($tertiary-color, 0.76));
+        cursor: pointer;
+
+        &:disabled {
+            opacity: 0.45;
+            cursor: not-allowed;
+        }
+
+        &::-webkit-slider-thumb {
+            appearance: none;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            border: 2px solid $quaternary-color;
+            background: $primary-color;
+            box-shadow: 0 0 0 3px rgba($quaternary-color, 0.2);
+        }
+
+        &::-moz-range-thumb {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            border: 2px solid $quaternary-color;
+            background: $primary-color;
+            box-shadow: 0 0 0 3px rgba($quaternary-color, 0.2);
+        }
+    }
+}
+
+@media (max-width: 980px) {
+    .catalogFiltersSection {
+        .catalogFiltersContainer {
+            width: min(100% - 28px, 1320px);
+        }
+
+        .catalogFiltersHeader {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .catalogFiltersSearch {
+            width: 100%;
+            min-width: 0;
+        }
+
+        .catalogFiltersToolbar {
+            grid-template-columns: 1fr;
+        }
+
+        .catalogFiltersRangeRow {
+            grid-template-columns: 1fr;
+        }
+    }
+}
+
+@media (max-width: 720px) {
+    .catalogFiltersSection {
+        padding: 88px 0 36px;
+
+        .catalogFiltersTitle {
+            font-size: clamp(44px, 16vw, 72px);
+        }
+
+        .catalogFiltersCount {
+            font-size: $font-size-medium;
+        }
+
+        .catalogFiltersPill {
+            min-height: 32px;
+            padding: 0 12px;
+            font-size: $font-size-small;
+        }
+
+        .catalogFiltersRangeLabel {
+            font-size: $font-size-medium;
+        }
+    }
+}

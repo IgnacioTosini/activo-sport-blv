@@ -1,0 +1,82 @@
+@use '@/styles/variables' as *;
+
+.brandsBanner {
+    width: 100%;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    overflow: hidden;
+    border-top: 1px solid rgba($tertiary-color, 0.1);
+    border-bottom: 1px solid rgba($tertiary-color, 0.1);
+    background: linear-gradient(90deg, rgba($secondary-color, 0.9) 0%, rgba($primary-color, 0.98) 100%);
+
+    @media (max-width: 768px) {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .brandsBannerViewport {
+        overflow: hidden;
+        width: 100%;
+
+        .brandsBannerTrack {
+            display: flex;
+            align-items: center;
+            width: max-content;
+            animation: brands-marquee 60s linear infinite;
+            will-change: transform;
+
+            .brandsBannerItem {
+                position: relative;
+                margin: 0;
+                padding: 14px 84px 14px 0;
+                text-transform: uppercase;
+                letter-spacing: 0.03em;
+                font-family: $font-family;
+                font-size: clamp($font-size-large, 3.8vw, $font-size-xxlarge);
+                font-weight: $font-weight-medium;
+                color: #4f5663;
+                white-space: nowrap;
+
+                &:hover {
+                    color: $color-text-tertiary;
+                }
+
+                &::after {
+                    content: "";
+                    position: absolute;
+                    right: 10px;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    width: 30px;
+                    height: 30px;
+                    border-radius: 50%;
+                    background: $quaternary-color;
+                    box-shadow: 0 0 14px rgba($quaternary-color, 0.3);
+                }
+            }
+        }
+    }
+
+    .brandsBannerEmpty {
+        margin: 0;
+        padding: 16px;
+        text-align: center;
+        color: $color-text-secondary;
+    }
+}
+
+@keyframes brands-marquee {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .brandsBannerTrack {
+        animation: none;
+    }
+}

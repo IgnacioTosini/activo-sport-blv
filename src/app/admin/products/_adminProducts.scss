@@ -1,0 +1,377 @@
+@use '@/styles/variables' as *;
+
+.adminProducts {
+    min-height: 100dvh;
+    padding: 112px 0 56px;
+    color: $color-text;
+    background:
+        radial-gradient(circle at 18% 16%, rgba($quaternary-color, 0.16), transparent 34%),
+        radial-gradient(circle at 85% 30%, rgba($tertiary-color, 0.06), transparent 28%),
+        $primary-color;
+    font-family: $font-family;
+
+    .adminProductsContainer {
+        width: min(1360px, calc(100% - 64px));
+        margin: 0 auto;
+        display: grid;
+        gap: 26px;
+
+        .adminProductsBackButton {
+            display: inline-block;
+            color: $color-text-secondary;
+            font-size: $font-size-small;
+            margin-bottom: 0.625rem;
+            text-decoration: underline;
+            text-underline-offset: 2px;
+
+            &:hover {
+                color: $color-text-tertiary;
+            }
+        }
+    }
+
+    .adminProductsHeader {
+        display: flex;
+        justify-content: space-between;
+        align-items: end;
+        gap: 1rem;
+    }
+
+    .adminProductsEyebrow {
+        display: inline-block;
+        margin-bottom: 0.625rem;
+        font-size: 11px;
+        letter-spacing: 0.22em;
+        color: $quaternary-color;
+    }
+
+    .adminProductsTitle {
+        font-size: clamp($font-size-xxlarge, 8vw, $font-size-xxxlarge);
+        font-family: $font-family-secondary;
+        font-weight: $font-weight-regular;
+        line-height: 0.9;
+        text-transform: uppercase;
+    }
+
+    .adminProductsTitleAccent {
+        color: $quaternary-color;
+    }
+
+    .adminProductsSubtitle {
+        margin-top: 0.625rem;
+        max-width: 820px;
+        color: #9da3ad;
+        font-size: $font-size-normal;
+    }
+
+    .adminProductsCountCard {
+        min-width: 190px;
+        border-radius: 16px;
+        border: 1px solid rgba($quaternary-color, 0.36);
+        background: rgba(#0b0c0f, 0.72);
+        padding: 14px 16px;
+    }
+
+    .adminProductsCountLabel {
+        display: block;
+        font-size: $font-size-small;
+        letter-spacing: 0.16em;
+        color: #8e949d;
+        text-transform: uppercase;
+    }
+
+    .adminProductsCountValue {
+        display: block;
+        margin-top: 6px;
+        color: $quaternary-color;
+        font-family: $font-family-secondary;
+        font-size: $font-size-xxlarge;
+        line-height: 0.95;
+    }
+
+    .adminProductsGrid {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(320px, 460px);
+        gap: 16px;
+    }
+
+    .adminProductsCard {
+        border-radius: 16px;
+        border: 1px solid rgba($tertiary-color, 0.08);
+        background: linear-gradient(180deg, rgba(#0c0e12, 0.93) 0%, rgba(#090b0d, 0.93) 100%);
+        padding: 16px;
+    }
+
+    .adminProductsCardTitle {
+        margin-bottom: 0.75rem;
+        font-size: $font-size-medium-large;
+    }
+
+    .adminProductsTableWrap {
+        overflow-x: auto;
+    }
+
+    .adminProductsTable {
+        width: 100%;
+        min-width: 640px;
+        border-collapse: collapse;
+
+        th,
+        td {
+            padding: 12px 8px;
+            border-bottom: 1px solid rgba($tertiary-color, 0.08);
+            text-align: left;
+            vertical-align: middle;
+        }
+
+        th {
+            font-size: $font-size-small;
+            letter-spacing: 0.13em;
+            text-transform: uppercase;
+            color: #8e949d;
+        }
+
+        tr {
+            transition: all 0.12s ease-in-out;
+            &:hover {
+                background: rgba($color-hover-secondary, 0.08);
+            }
+
+        }
+        .adminProductsRowDisabled {
+            opacity: 0.2;
+        }
+    }
+
+    .adminProductsModelCell {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .adminProductsThumbnail {
+        width: 78px;
+        height: 58px;
+        border-radius: 6px;
+        border: 1px solid rgba($tertiary-color, 0.16);
+        object-fit: cover;
+    }
+
+    .adminProductsSlug {
+        color: #8e949d;
+        font-size: $font-size-small;
+    }
+
+    .adminProductsBadge {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 34px;
+        height: 24px;
+        padding: 0 10px;
+        border-radius: 999px;
+        border: 1px solid rgba($quaternary-color, 0.42);
+        background: rgba($quaternary-color, 0.12);
+        color: $quaternary-color;
+        font-size: $font-size-small;
+        font-weight: $font-weight-bold;
+
+        &.isMuted {
+            color: #c8cdd7;
+            background: rgba($tertiary-color, 0.08);
+            border-color: rgba($tertiary-color, 0.18);
+        }
+    }
+
+    .adminProductsPrice {
+        color: $quaternary-color;
+        font-weight: $font-weight-bold;
+    }
+
+    .adminProductsActions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .adminProductsLinkButton,
+    .adminProductsDangerButton {
+        cursor: pointer;
+        min-height: 32px;
+        padding: 0 14px;
+        border-radius: 999px;
+        border: 1px solid rgba($quaternary-color, 0.44);
+        background: transparent;
+        color: $quaternary-color;
+        font-size: $font-size-small;
+        font-weight: $font-weight-bold;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        transition: transform 0.12s ease;
+
+        &:hover {
+            transform: translateY(-1px);
+        }
+    }
+
+    .adminProductsDangerButton {
+        border-color: rgba(#ff515b, 0.5);
+        color: #ff868e;
+    }
+
+    .adminProductsEmpty {
+        color: #8e949d;
+        font-size: $font-size-normal;
+    }
+
+    @media (max-width: 1080px) {
+        .adminProductsContainer {
+            width: min(100% - 32px, 960px);
+        }
+
+        .adminProductsHeader {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .adminProductsGrid {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    @media (max-width: 720px) {
+        padding: 88px 0 36px;
+
+        .adminProductsContainer {
+            width: min(100% - 20px, 960px);
+            gap: 14px;
+        }
+
+        .adminProductsHeader {
+            gap: 10px;
+        }
+
+        .adminProductsTitle {
+            font-size: clamp($font-size-xxlarge, 12vw, $font-size-xxxlarge);
+        }
+
+        .adminProductsSubtitle {
+            font-size: $font-size-small;
+            line-height: 1.45;
+        }
+
+        .adminProductsCountCard {
+            width: 100%;
+            min-width: 0;
+        }
+
+        .adminProductsCard {
+            padding: 12px;
+        }
+
+        .adminProductsTableWrap {
+            overflow: visible;
+        }
+
+        .adminProductsTable {
+            min-width: 0;
+
+            thead {
+                display: none;
+            }
+
+            tbody {
+                display: grid;
+                gap: 10px;
+            }
+
+            tbody tr {
+                display: grid;
+                gap: 8px;
+                padding: 10px;
+                border: 1px solid rgba($tertiary-color, 0.08);
+                border-radius: 12px;
+                background: rgba(#050608, 0.6);
+            }
+
+            td {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 10px;
+                padding: 0;
+                border: 0;
+                font-size: 13px;
+
+                &::before {
+                    color: #8e949d;
+                    font-size: 11px;
+                    letter-spacing: 0.08em;
+                    text-transform: uppercase;
+                    flex-shrink: 0;
+                }
+
+                &:nth-child(1) {
+                    align-items: flex-start;
+                    flex-direction: column;
+
+                    &::before {
+                        content: "Modelo";
+                    }
+                }
+
+                &:nth-child(2)::before {
+                    content: "Marca";
+                }
+
+                &:nth-child(3)::before {
+                    content: "Suela";
+                }
+
+                &:nth-child(4)::before {
+                    content: "Precio";
+                }
+
+                &:nth-child(5)::before {
+                    content: "Stock";
+                }
+
+                &:nth-child(6) {
+                    align-items: flex-start;
+                    flex-direction: column;
+
+                    &::before {
+                        content: "Acciones";
+                    }
+                }
+            }
+
+            .adminProductsEmptyCell {
+                display: block;
+                padding: 0;
+                border: 0;
+
+                &::before {
+                    content: "";
+                }
+            }
+        }
+
+        .adminProductsModelCell {
+            width: 100%;
+        }
+
+        .adminProductsActions {
+            width: 100%;
+        }
+
+        .adminProductsLinkButton,
+        .adminProductsDangerButton {
+            min-height: 30px;
+            padding: 0 12px;
+            font-size: $font-size-small;
+        }
+    }
+}

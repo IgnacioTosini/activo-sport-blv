@@ -1,0 +1,99 @@
+@use '@/styles/variables' as *;
+
+.navbar {
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 1.5rem 2rem;
+    background-color: rgba($primary-color, 0.8);
+    opacity: 0.95;
+    backdrop-filter: blur(100px);
+    z-index: 1000;
+
+    .navbarBrand {
+        font-family: $font-family;
+        font-size: $font-size-medium-large;
+        font-weight: $font-weight-bold;
+        color: $color-text;
+        line-height: 28px;
+        text-decoration: none;
+
+        span {
+            color: $color-text-tertiary;
+        }
+    }
+
+    .navbarLinks,
+    .navbarIcons {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+
+        .navbarLink {
+            position: relative;
+            display: flex;
+            align-items: center;
+            font-family: $font-family;
+            font-size: $font-size-medium;
+            font-weight: $font-weight-regular;
+            color: $color-text-secondary;
+            text-decoration: none;
+            transition: color 0.3s;
+            line-height: 20px;
+            letter-spacing: 0.02em;
+            text-transform: uppercase;
+
+            &:hover {
+                color: $color-hover-secondary;
+            }
+
+            &:hover::after,
+            &.active::after {
+                transform: scaleX(1);
+            }
+
+            &.active {
+                color: $color-hover-primary;
+            }
+        }
+
+        .navbarIcon {
+            position: relative;
+            color: $color-text-secondary;
+            font-size: $font-size-medium-large;
+            transition: color 0.3s;
+
+            &:hover {
+                color: $color-hover-primary;
+            }
+
+            .cartBadge {
+                position: absolute;
+                top: -0.5rem;
+                right: -0.8rem;
+                background-color: $color-button;
+                color: $color-text-quaternary;
+                font-size: $font-size-xsmall;
+                font-weight: $font-weight-bold;
+                border-radius: 9999px;
+                padding: 0.2rem 0.3rem;
+            }
+        }
+    }
+
+    .hamburgerButton {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border: 0;
+        background: transparent;
+        color: $color-text-tertiary;
+        cursor: pointer;
+    }
+}

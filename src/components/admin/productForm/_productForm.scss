@@ -1,0 +1,342 @@
+@use '@/styles/variables' as *;
+
+.productForm {
+  display: grid;
+  gap: 14px;
+  min-width: 0;
+  font-family: $font-family;
+
+  .productFormHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .productFormTitle {
+    font-size: 20px;
+    font-weight: $font-weight-bold;
+    color: $color-text;
+  }
+
+  .productFormLabel {
+    display: grid;
+    gap: 6px;
+    font-size: $font-size-small;
+    color: #c8cdd7;
+  }
+
+  .productFormInput,
+  .productFormSelect,
+  .productFormTextarea {
+    width: 100%;
+    min-height: 42px;
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: 1px solid rgba($color-text, 0.16);
+    background: rgba($secondary-color, 0.75);
+    color: $color-text;
+    font-family: $font-family;
+  }
+
+  .productFormInput:focus,
+  .productFormSelect:focus,
+  .productFormTextarea:focus {
+    outline: none;
+    border-color: rgba($quaternary-color, 0.85);
+    box-shadow: 0 0 0 2px rgba($quaternary-color, 0.15);
+  }
+
+  .productFormTextarea {
+    min-height: 110px;
+    resize: vertical;
+  }
+
+  .productFormRow2 {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .productFormDropZone {
+    display: grid;
+    gap: 8px;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px dashed rgba($quaternary-color, 0.5);
+    color: #b8bfca;
+    background: rgba($quaternary-color, 0.04);
+    font-size: $font-size-small;
+  }
+
+  .productFormMediaBlock {
+    display: grid;
+    gap: 8px;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px dashed rgba($quaternary-color, 0.4);
+    background: rgba($quaternary-color, 0.03);
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  .productFormMediaTitle {
+    color: $color-text;
+    font-size: $font-size-small;
+    font-weight: $font-weight-medium;
+  }
+
+  .productFormImageHint {
+    display: grid;
+    gap: 6px;
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: 1px dashed rgba($quaternary-color, 0.5);
+    background: rgba($quaternary-color, 0.04);
+
+    strong {
+      color: $color-text;
+      font-size: $font-size-small;
+      font-weight: $font-weight-medium;
+    }
+
+    span {
+      color: #b8bfca;
+      font-size: $font-size-small;
+    }
+  }
+
+  .productFormMediaHint {
+    color: $color-text;
+    font-size: $font-size-small;
+  }
+
+  .productFormPendingFiles {
+    border-radius: 10px;
+    border: 1px solid rgba($quaternary-color, 0.25);
+    padding: 10px 12px;
+    background: rgba($secondary-color, 0.45);
+
+    .productFormPendingFilesList {
+      margin: 8px 0 0;
+      padding-left: 18px;
+      color: $color-text;
+      font-size: $font-size-small;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      list-style: none;
+    }
+  }
+
+  .productFormGalleryEditor {
+    display: grid;
+    gap: 8px;
+    padding: 12px;
+    border-radius: 1rem;
+    border: 1px solid rgba($quaternary-color, 0.22);
+    background: rgba($secondary-color, 0.36);
+  }
+
+  .productFormGalleryGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 10px;
+  }
+
+  .productFormGalleryItem {
+    display: grid;
+    gap: 8px;
+    padding: 8px;
+    border-radius: 1rem;
+    border: 1px solid rgba($tertiary-color, 0.2);
+    background: rgba(#07080a, 0.55);
+  }
+
+  .productFormGalleryThumb {
+    width: 100%;
+    height: 120px;
+    border-radius: 1rem;
+    object-fit: cover;
+    border: 1px solid rgba($tertiary-color, 0.2);
+  }
+
+  .productFormGalleryPendingBadge {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 8px;
+    border-radius: 999px;
+    width: fit-content;
+    font-size: 11px;
+    font-weight: $font-weight-medium;
+    color: #c3ff2a;
+    background: rgba($quaternary-color, 0.14);
+    border: 1px solid rgba($quaternary-color, 0.35);
+  }
+
+  .productFormGalleryActions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .productFormGalleryReplaceButton {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .productFormGalleryReplaceInput {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    cursor: pointer;
+  }
+
+  .productFormInputFile {
+    width: 100%;
+    color: $color-text;
+    font-size: $font-size-small;
+  }
+
+  .productFormCheckboxRow {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .productFormCheckbox {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: $font-size-small;
+    color: #c8cdd7;
+  }
+
+  .productFormStockBox {
+    display: grid;
+    gap: 8px;
+    padding: 12px;
+    border-radius: 12px;
+    border: 1px dashed rgba($color-text, 0.22);
+  }
+
+  .productFormStockTitle {
+    color: #8e949d;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .productFormStockTotalLive {
+    font-size: $font-size-small;
+    color: #d5dbe5;
+
+    strong {
+      color: #c3ff2a;
+      font-weight: $font-weight-bold;
+    }
+  }
+  .productFormStockGrid{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-height: 400px;
+    overflow: auto;
+
+    .productFormStockRow {
+      display: grid;
+      grid-template-columns: 1fr 120px;
+      gap: 0.5rem;
+    }
+  }
+
+  .productFormCustomStockHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 4px;
+  }
+
+  .productFormCustomStockRow {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr)) auto;
+    gap: 0.5rem;
+  }
+
+  .productFormDangerInlineButton {
+    cursor: pointer;
+    min-height: 42px;
+    padding: 0 12px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 107, 118, 0.5);
+    background: rgba(255, 107, 118, 0.1);
+    color: #ff9aa1;
+    font-size: $font-size-small;
+    font-weight: $font-weight-medium;
+  }
+
+  .productFormActions {
+    display: flex;
+    gap: 8px;
+  }
+
+  .productFormPrimaryButton,
+  .productFormSecondaryButton {
+    cursor: pointer;
+    min-height: 42px;
+    padding: 0 14px;
+    border-radius: 999px;
+    border: 1px solid rgba($quaternary-color, 0.46);
+    background: transparent;
+    color: $quaternary-color;
+    font-size: 13px;
+    font-weight: $font-weight-bold;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.12s ease, background-color 0.12s ease, color 0.12s ease;
+
+    &:hover {
+      transform: translateY(-1px);
+    }
+  }
+
+  .productFormPrimaryButton {
+    background: $quaternary-color;
+    color: $color-text-quaternary;
+    border-color: $quaternary-color;
+  }
+
+  .productFormSecondaryButton {
+    color: #e6eaf0;
+    border-color: rgba($color-text, 0.28);
+  }
+
+  .productFormStateMsg {
+    font-size: 13px;
+    color: #9ce45a;
+  }
+
+  .productFormStateMsgError {
+    color: #ff868e;
+  }
+
+  .productFormEmpty {
+    color: #8e949d;
+    font-size: 14px;
+  }
+
+  @media (max-width: 720px) {
+    .productFormRow2,
+    .productFormStockRow,
+    .productFormCustomStockRow {
+      grid-template-columns: 1fr;
+    }
+
+    .productFormActions {
+      flex-direction: column;
+    }
+  }
+}

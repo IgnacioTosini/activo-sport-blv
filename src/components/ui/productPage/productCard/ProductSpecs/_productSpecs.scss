@@ -1,0 +1,45 @@
+@use '@/styles/variables' as *;
+
+.productSpecs {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.625rem;
+
+    .productSpecCard {
+        border: 0.0625rem solid rgba($tertiary-color, 0.12);
+        border-radius: 0.875rem;
+        background: $secondary-color;
+        padding: 0.75rem;
+        display: grid;
+        gap: 0.5rem;
+    }
+
+    .productSpecLabel {
+        font-size: $font-size-small;
+        color: $color-text-secondary;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        font-weight: $font-weight-bold;
+        font-family: $font-family;
+    }
+
+    .productSpecValue {
+        color: $color-text;
+        font-size: clamp($font-size-medium, 2vw, $font-size-large);
+        line-height: 0.95;
+        font-family: $font-family;
+        font-weight: $font-weight-regular;
+    }
+}
+
+@media (max-width: 75rem) {
+    .productSpecs {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 47.5rem) {
+    .productSpecs {
+        grid-template-columns: 1fr;
+    }
+}
