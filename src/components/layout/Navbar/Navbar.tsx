@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { MouseEvent, useEffect, useRef, useState } from "react";
 import gsap from 'gsap';
 import { RxHamburgerMenu } from "react-icons/rx";
-/* import { animateNavbarEntrance } from '@/components/animations/gsap/navbarAnimations'; */
+import { animateNavbarEntrance } from "./navbar.animations";
 import { HamburgerNavbar } from "../HamburgerNavbar/HamburgerNavbar";
 import { IoMdClose } from "react-icons/io";
 import { navigationItems, navigationIcons } from "@/utils/navigationItems";
@@ -30,9 +30,11 @@ export default function Navbar({ isAdmin }: Props) {
 
     useEffect(() => {
         if (!navbarRef.current) return;
+
         const ctx = gsap.context(() => {
-            /* animateNavbarEntrance(navbarRef.current!); */
+            animateNavbarEntrance(navbarRef.current!);
         }, navbarRef.current);
+
         return () => ctx.revert();
     }, []);
 
@@ -153,11 +155,11 @@ export default function Navbar({ isAdmin }: Props) {
                         </Link>
                     ))
                 }
-                    {isAdmin && (
-                        <Link href="/admin" className={`navbarIcon ${pathname === '/admin' ? 'active' : ''}`} aria-current={pathname === '/admin' ? 'page' : undefined}>
-                            <span className="adminIcon"><FaUserSecret /></span>
-                        </Link>
-                    )}
+                {isAdmin && (
+                    <Link href="/admin" className={`navbarIcon ${pathname === '/admin' ? 'active' : ''}`} aria-current={pathname === '/admin' ? 'page' : undefined}>
+                        <span className="adminIcon"><FaUserSecret /></span>
+                    </Link>
+                )}
             </div>
         </nav>
     )

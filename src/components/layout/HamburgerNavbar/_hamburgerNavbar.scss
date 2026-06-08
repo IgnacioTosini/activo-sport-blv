@@ -2,6 +2,7 @@
 
 .hamburgerNavbar {
 	display: none;
+	transform-origin: top center;
 }
 
 @media (max-width: 768px) {

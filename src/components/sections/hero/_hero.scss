@@ -12,6 +12,13 @@
         linear-gradient(90deg, rgba(#000, 0.96) 0%, rgba(#000, 0.78) 45%, rgba(#000, 0.44) 100%),
         var(--hero-image) center right / cover no-repeat;
 
+    @media (max-width: 720px) {
+        background-position:
+            center,
+            center,
+            65% center;
+    }
+
     &::after {
         content: '';
         position: absolute;
@@ -65,7 +72,7 @@
         align-items: flex-start;
         margin: 0;
         font-family: $font-family-secondary;
-        font-size: clamp(74px, 10vw, 160px);
+        font-size: clamp(74px, 8vw, 160px);
         font-weight: $font-weight-regular;
         line-height: 0.88;
         letter-spacing: -0.03em;
